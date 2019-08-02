@@ -12,19 +12,24 @@ import javax.validation.Valid;
  */
 @RestController
 public class ShoppingBasketController {
-    private TescoServiceImpl shoppingBasketServiceImpl;
+	private TescoServiceImpl shoppingBasketServiceImpl;
 
-    public ShoppingBasketController(TescoServiceImpl shoppingBasketServiceImpl) {
-        this.shoppingBasketServiceImpl = shoppingBasketServiceImpl;
-    }
+	public ShoppingBasketController(TescoServiceImpl shoppingBasketServiceImpl) {
+		this.shoppingBasketServiceImpl = shoppingBasketServiceImpl;
+	}
 
-    @RequestMapping(value = {"/shoppingBasket"}, method = RequestMethod.GET)
-    public ResponseEntity getShoppingBasket(@RequestParam(name = "name") String name) {
-        return shoppingBasketServiceImpl.getGroceryOptions(name);
-    }
+	@RequestMapping(value = {"/shoppingBasket"}, method = RequestMethod.GET)
+	public ResponseEntity getShoppingBasket(@RequestParam(name = "name") String name) {
+		return shoppingBasketServiceImpl.getGroceryOptions(name);
+	}
 
-    @RequestMapping(value={"/createShoppingList"}, method = RequestMethod.POST)
-    public void createShoppingList(@RequestBody @Valid IngredientsRequest request){
-        shoppingBasketServiceImpl.createShoppingList(request);
-    }
+	@RequestMapping(value = {"/createShoppingList"}, method = RequestMethod.POST)
+	public void createShoppingList(@RequestBody @Valid IngredientsRequest request) {
+		shoppingBasketServiceImpl.createShoppingList(request);
+	}
+
+	@RequestMapping(value = {"/getShoppingListByItemId/{itemId}"}, method = RequestMethod.GET)
+	public ResponseEntity getShoppingListByItemId(@PathVariable(name = "itemId") String itemId) {
+		return shoppingBasketServiceImpl.getShoppingListByItemId(itemId);
+	}
 }

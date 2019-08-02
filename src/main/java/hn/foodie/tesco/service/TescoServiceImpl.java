@@ -61,6 +61,15 @@ public class TescoServiceImpl implements TescoService {
     }
 
     @Override
+    public ResponseEntity getShoppingListByItemId(String itemId){
+        shoppingBasketRepository.findByItemId(itemId).ifPresent(
+            (basket)  -> {
+
+            }
+        );
+    }
+
+    @Override
     public void createShoppingList(IngredientsRequest request){
         String itemId = request.getItemId();
         List<Ingredient> ingredientList = request.getIngredientList();
